@@ -67,10 +67,10 @@ def configuration(parent_package='',top_path=None):
     #                     **lapack_opt)
 
     # dop
-    config.add_extension('_dop',
-                         sources=['dop.pyf'],
-                         libraries=['dop'],
-                         depends=dop_src)
+    #config.add_extension('_dop',
+    #                     sources=['dop.pyf'],
+    #                     libraries=['dop'],
+    #                     depends=dop_src)
 
     config.add_extension('_test_multivariate',
                          sources=quadpack_test_src)

@@ -50,11 +50,11 @@ def configuration(parent_package='',top_path=None):
                          depends=[join('tnc','tnc.h')],
                          **numpy_nodepr_api)
 
-    config.add_extension('_cobyla',
-                         sources=[join('cobyla',x) for x in ['cobyla.pyf',
-                                                             'cobyla2.f',
-                                                             'trstlp.f']],
-                         **numpy_nodepr_api)
+    #config.add_extension('_cobyla',
+    #                     sources=[join('cobyla',x) for x in ['cobyla.pyf',
+    #                                                         'cobyla2.f',
+    #                                                         'trstlp.f']],
+    #                     **numpy_nodepr_api)
 
     sources = ['minpack2.pyf', 'dcsrch.f', 'dcstep.f']
     config.add_extension('minpack2',
