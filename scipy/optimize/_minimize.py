@@ -29,7 +29,8 @@ from ._trustregion_ncg import _minimize_trust_ncg
 # constrained minimization
 from .lbfgsb import _minimize_lbfgsb
 from .tnc import _minimize_tnc
-from .cobyla import _minimize_cobyla
+#from .cobyla import _minimize_cobyla
+_minimize_cobyla = None
 from .slsqp import _minimize_slsqp
 
 

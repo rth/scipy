@@ -236,7 +236,7 @@ from .minpack import *
 from .zeros import *
 from .lbfgsb import fmin_l_bfgs_b, LbfgsInvHessProduct
 from .tnc import fmin_tnc
-from .cobyla import fmin_cobyla
+#from .cobyla import fmin_cobyla
 from .nonlin import *
 from .slsqp import fmin_slsqp
 from .nnls import nnls

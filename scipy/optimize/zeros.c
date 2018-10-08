@@ -193,6 +193,10 @@ PyObject *PyInit__zeros(void)
 {
     PyObject *m;
 
+    volatile long x;
+    x = (long)malloc(0);
+    free((void*)x);
+
     m = PyModule_Create(&moduledef);
 
     return m;
