@@ -91,18 +91,18 @@ def configuration(parent_package='',top_path=None):
                       '_faddeeva.cxx', 'Faddeeva.cc']
     ufuncs_cxx_dep = (headers + ufuncs_cxx_src + cephes_src
                       + ['*.hh'])
-    config.add_extension('_ufuncs_cxx',
-                         sources=ufuncs_cxx_src,
-                         depends=ufuncs_cxx_dep,
-                         include_dirs=[curdir],
-                         define_macros=define_macros,
-                         extra_info=get_info("npymath"))
+    #config.add_extension('_ufuncs_cxx',
+    #                     sources=ufuncs_cxx_src,
+    #                     depends=ufuncs_cxx_dep,
+    #                     include_dirs=[curdir],
+    #                     define_macros=define_macros,
+    #                     extra_info=get_info("npymath"))
 
-    cfg = dict(get_system_info('lapack_opt'))
-    config.add_extension('_ellip_harm_2',
-                         sources=['_ellip_harm_2.c', 'sf_error.c',],
-                         **cfg
-                         )
+    #cfg = dict(get_system_info('lapack_opt'))
+    #config.add_extension('_ellip_harm_2',
+    #                     sources=['_ellip_harm_2.c', 'sf_error.c',],
+    #                     **cfg
+    #                     )
 
     config.add_data_files('tests/*.py')
     config.add_data_files('tests/data/README')

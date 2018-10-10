@@ -58,10 +58,10 @@ def configuration(parent_package='', top_path=None):
     ckdtree_headers = [join('ckdtree', 'src', x) for x in ckdtree_headers]
         
     ckdtree_dep = ['ckdtree.cxx'] + ckdtree_headers + ckdtree_src
-    config.add_extension('ckdtree',
-                         sources=['ckdtree.cxx'] + ckdtree_src,
-                         depends=ckdtree_dep,
-                         include_dirs=inc_dirs + [join('ckdtree','src')])
+    #config.add_extension('ckdtree',
+    #                     sources=['ckdtree.cxx'] + ckdtree_src,
+    #                     depends=ckdtree_dep,
+    #                     include_dirs=inc_dirs + [join('ckdtree','src')])
     # _distance_wrap
     config.add_extension('_distance_wrap',
         sources=[join('src', 'distance_wrap.c')],
