@@ -32,7 +32,10 @@ import numpy as np
 from numpy.random import randint, multivariate_normal
 
 # Local imports.
-from . import mvn
+try:
+    from . import mvn
+except ImportError:
+    mvn = None
 
 
 __all__ = ['gaussian_kde']
