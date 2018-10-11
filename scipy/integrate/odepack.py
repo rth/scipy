@@ -3,7 +3,8 @@ from __future__ import division, print_function, absolute_import
 
 __all__ = ['odeint']
 
-from . import _odepack
+# from . import _odepack
+_odepack = None
 from copy import copy
 import warnings
 

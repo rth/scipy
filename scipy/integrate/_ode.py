@@ -89,10 +89,19 @@ import re
 import warnings
 
 from numpy import asarray, array, zeros, int32, isscalar, real, imag, vstack
+try:
+    from . import vode as _vode
+except ImportError:
+    _vode = None
+try:
+    from . import _dop
+except ImportError:
+    _dop = None
 
-from . import vode as _vode
-from . import _dop
-from . import lsoda as _lsoda
+try:
+    from . import lsoda as _lsoda
+except ImportError:
+    _lsoda = None
 
 
 #------------------------------------------------------------------------------
