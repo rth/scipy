@@ -22,18 +22,18 @@ def configuration(parent_package='', top_path=None):
         libodr_files.append('d_lpkbls.f')
 
     odrpack_src = [join('odrpack', x) for x in libodr_files]
-    config.add_library('odrpack', sources=odrpack_src)
+    #config.add_library('odrpack', sources=odrpack_src)
 
     sources = ['__odrpack.c']
     libraries = ['odrpack'] + blas_info.pop('libraries', [])
     include_dirs = ['.'] + blas_info.pop('include_dirs', [])
-    config.add_extension('__odrpack',
-        sources=sources,
-        libraries=libraries,
-        include_dirs=include_dirs,
-        depends=(['odrpack.h'] + odrpack_src),
-        **blas_info
-    )
+    #config.add_extension('__odrpack',
+    #    sources=sources,
+    #    libraries=libraries,
+    #    include_dirs=include_dirs,
+    #    depends=(['odrpack.h'] + odrpack_src),
+    #    **blas_info
+    #)
 
     config.add_data_dir('tests')
     return config
