@@ -4,7 +4,7 @@
 from __future__ import division, print_function, absolute_import
 
 import warnings
-import threading
+import dummy_threading as threading
 
 from . import sigtools
 from scipy._lib.six import callable

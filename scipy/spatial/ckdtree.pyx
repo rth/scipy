@@ -17,8 +17,7 @@ from libc.string cimport memset, memcpy
 
 cimport cython
 
-from multiprocessing import cpu_count
-import threading
+import dummy_threading as threading
 
 cdef extern from "limits.h":
     long LONG_MAX
@@ -26,7 +25,7 @@ cdef extern from "limits.h":
 cdef extern from "ckdtree_methods.h":
     int number_of_processors
     
-number_of_processors = cpu_count()
+number_of_processors = 1
 
 from libcpp.vector cimport vector
 from libc cimport string
@@ -91,7 +90,7 @@ cdef extern from "cpp_utils.h":
 # coo_entry wrapper
 # =================
 
-cdef class coo_entries:
+cdef class coo_entries(object):
 
     cdef: 
         readonly object __array_interface__

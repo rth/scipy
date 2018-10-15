@@ -1,7 +1,7 @@
 from __future__ import division, print_function, absolute_import
 
 import itertools
-import threading
+import dummy_threading as threading
 import time
 
 import numpy as np

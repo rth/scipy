@@ -10,7 +10,7 @@ Wrappers for Qhull triangulation, plus some additional N-D geometry utilities
 # Distributed under the same BSD license as Scipy.
 #
 
-import threading
+import dummy_threading as threading
 import numpy as np
 cimport numpy as np
 cimport cython

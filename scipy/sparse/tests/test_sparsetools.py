@@ -4,7 +4,7 @@ import sys
 import os
 import gc
 import re
-import threading
+import dummy_threading as threading
 
 from nose import SkipTest
 import numpy as np

@@ -129,7 +129,7 @@ def test_gaussian_truncate():
 
 class TestThreading(TestCase):
     def check_func_thread(self, n, fun, args, out):
-        from threading import Thread
+        from dummy_threading import Thread
         thrds = [Thread(target=fun, args=args, kwargs={'output': out[x]}) for x in range(n)]
         [t.start() for t in thrds]
         [t.join() for t in thrds]
