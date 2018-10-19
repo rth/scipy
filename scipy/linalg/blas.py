@@ -152,7 +152,10 @@ __all__ = ['get_blas_funcs', 'find_best_blas_type']
 
 import numpy as _np
 
-from scipy.linalg import _fblas
+try:
+    from scipy.linalg import _fblas
+except ImportError:
+    _fblas = None
 try:
     from scipy.linalg import _cblas
 except ImportError:
@@ -160,7 +163,10 @@ except ImportError:
 
 # Expose all functions (only fblas --- cblas is an implementation detail)
 empty_module = None
-from scipy.linalg._fblas import *
+try:
+    from scipy.linalg._fblas import *
+except ImportError:
+    pass
 del empty_module
 
 # 'd' will be default for 'i',..

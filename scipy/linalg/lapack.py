@@ -359,7 +359,10 @@ from .blas import _get_funcs
 # Backward compatibility:
 from .blas import find_best_blas_type as find_best_lapack_type
 
-from scipy.linalg import _flapack
+try:
+    from scipy.linalg import _flapack
+except ImportError:
+    _flapack = None
 try:
     from scipy.linalg import _clapack
 except ImportError:
@@ -367,12 +370,18 @@ except ImportError:
 
 # Backward compatibility
 from scipy._lib._util import DeprecatedImport as _DeprecatedImport
-clapack = _DeprecatedImport("scipy.linalg.blas.clapack", "scipy.linalg.lapack")
-flapack = _DeprecatedImport("scipy.linalg.blas.flapack", "scipy.linalg.lapack")
+try:
+    clapack = _DeprecatedImport("scipy.linalg.blas.clapack", "scipy.linalg.lapack")
+    flapack = _DeprecatedImport("scipy.linalg.blas.flapack", "scipy.linalg.lapack")
+except ImportError:
+    pass
 
 # Expose all functions (only flapack --- clapack is an implementation detail)
 empty_module = None
-from scipy.linalg._flapack import *
+try:
+    from scipy.linalg._flapack import *
+except ImportError:
+    pass
 del empty_module
 
 _dep_message = """The `*gegv` family of routines has been deprecated in
@@ -380,17 +389,20 @@ LAPACK 3.6.0 in favor of the `*ggev` family of routines.
 The corresponding wrappers will be removed from SciPy in
 a future release."""
 
-cgegv = _np.deprecate(cgegv, old_name='cgegv', message=_dep_message)
-dgegv = _np.deprecate(dgegv, old_name='dgegv', message=_dep_message)
-sgegv = _np.deprecate(sgegv, old_name='sgegv', message=_dep_message)
-zgegv = _np.deprecate(zgegv, old_name='zgegv', message=_dep_message)
+try:
+    cgegv = _np.deprecate(cgegv, old_name='cgegv', message=_dep_message)
+    dgegv = _np.deprecate(dgegv, old_name='dgegv', message=_dep_message)
+    sgegv = _np.deprecate(sgegv, old_name='sgegv', message=_dep_message)
+    zgegv = _np.deprecate(zgegv, old_name='zgegv', message=_dep_message)
 
-# Modyfy _flapack in this scope so the deprecation warnings apply to
-# functions returned by get_lapack_funcs.
-_flapack.cgegv = cgegv
-_flapack.dgegv = dgegv
-_flapack.sgegv = sgegv
-_flapack.zgegv = zgegv
+    # Modyfy _flapack in this scope so the deprecation warnings apply to
+    # functions returned by get_lapack_funcs.
+    _flapack.cgegv = cgegv
+    _flapack.dgegv = dgegv
+    _flapack.sgegv = sgegv
+    _flapack.zgegv = zgegv
+except Exception:
+    pass
 
 # some convenience alias for complex functions
 _lapack_alias = {
