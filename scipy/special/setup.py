@@ -98,11 +98,11 @@ def configuration(parent_package='',top_path=None):
                          define_macros=define_macros,
                          extra_info=get_info("npymath"))
 
-    cfg = dict(get_system_info('lapack_opt'))
-    config.add_extension('_ellip_harm_2',
-                         sources=['_ellip_harm_2.c', 'sf_error.c',],
-                         **cfg
-                         )
+    #cfg = dict(get_system_info('lapack_opt'))
+    #config.add_extension('_ellip_harm_2',
+    #                     sources=['_ellip_harm_2.c', 'sf_error.c',],
+    #                     **cfg
+    #                     )
 
     config.add_data_files('tests/*.py')
     config.add_data_files('tests/data/README')

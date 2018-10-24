@@ -4,7 +4,14 @@ import threading
 import numpy as np
 
 from ._ufuncs import _ellip_harm
-from ._ellip_harm_2 import _ellipsoid, _ellipsoid_norm
+
+
+def _raise_error(*cargs, **kwargs):
+    raise NotImplementedError
+
+
+_ellipsoid = _raise_error
+_ellipsoid_norm = _raise_error
 
 
 # the functions _ellipsoid, _ellipsoid_norm use global variables, the lock
