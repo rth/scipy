@@ -39,7 +39,6 @@ __all__ = ['netcdf_file']
 import warnings
 import weakref
 from operator import mul
-import mmap as mm
 
 import numpy as np
 from numpy.compat import asbytes, asstr
@@ -219,6 +218,8 @@ class netcdf_file(object):
     def __init__(self, filename, mode='r', mmap=None, version=1,
                  maskandscale=False):
         """Initialize netcdf_file from fileobj (str or file-like)."""
+        import mmap as mm
+
         if mode not in 'rwa':
             raise ValueError("Mode must be either 'r', 'w' or 'a'.")
 
