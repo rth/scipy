@@ -645,7 +645,7 @@ from . import specfun
 from . import orthogonal
 from .orthogonal import *
 from .spfun_stats import multigammaln
-from ._ellip_harm import ellip_harm, ellip_harm_2, ellip_normal
+from ._ellip_harm import ellip_harm, ellip_normal
 from .lambertw import lambertw
 from ._spherical_bessel import (spherical_jn, spherical_yn, spherical_in,
                                 spherical_kn)
