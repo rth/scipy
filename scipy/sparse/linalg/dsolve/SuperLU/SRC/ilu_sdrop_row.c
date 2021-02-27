@@ -23,13 +23,6 @@ at the top-level directory.
 #include <stdlib.h>
 #include "slu_sdefs.h"
 
-extern void sswap_(int *, float [], int *, float [], int *);
-extern void saxpy_(int *, float *, float [], int *, float [], int *);
-extern void scopy_(int *, float [], int *, float [], int *);
-extern float sasum_(int *, float *, int *);
-extern float snrm2_(int *, float *, int *);
-extern double dnrm2_(int *, double [], int *);
-extern int isamax_(int *, float [], int *);
 
 static float *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)

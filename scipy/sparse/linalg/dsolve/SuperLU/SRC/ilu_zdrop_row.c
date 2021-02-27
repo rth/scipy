@@ -23,15 +23,6 @@ at the top-level directory.
 #include <stdlib.h>
 #include "slu_zdefs.h"
 
-extern void zswap_(int *, doublecomplex [], int *, doublecomplex [], int *);
-extern void zaxpy_(int *, doublecomplex *, doublecomplex [], int *, doublecomplex [], int *);
-extern void zcopy_(int *, doublecomplex [], int *, doublecomplex [], int *);
-extern double dzasum_(int *, doublecomplex *, int *);
-extern double dznrm2_(int *, doublecomplex *, int *);
-extern double dnrm2_(int *, double [], int *);
-extern void dcopy_(int *, double [], int *, double [], int *);
-extern int izamax_(int *, doublecomplex [], int *);
-
 static double *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)
 {

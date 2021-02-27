@@ -28,7 +28,10 @@ at the top-level directory.
 #ifndef DCOMPLEX_INCLUDE
 #define DCOMPLEX_INCLUDE
 
-typedef struct { double r, i; } doublecomplex;
+#include"scipy_slu_config.h"
+
+// defined in clapack
+//typedef struct { double r, i; } doublecomplex;
 
 
 /* Macro definitions */

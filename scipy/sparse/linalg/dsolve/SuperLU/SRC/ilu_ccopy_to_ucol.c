@@ -26,8 +26,6 @@ at the top-level directory.
 int num_drop_U;
 #endif
 
-extern void ccopy_(int *, complex [], int *, complex [], int *);
-
 #if 0
 static complex *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)

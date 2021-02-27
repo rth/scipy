@@ -26,7 +26,6 @@ at the top-level directory.
 int num_drop_U;
 #endif
 
-extern void dcopy_(int *, double [], int *, double [], int *);
 
 #if 0
 static double *A;  /* used in _compare_ only */

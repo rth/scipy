@@ -27,8 +27,9 @@ at the top-level directory.
 
 #ifndef SCOMPLEX_INCLUDE
 #define SCOMPLEX_INCLUDE
-
-typedef struct { float r, i; } complex;
+#include"scipy_slu_config.h"
+// defined in  CLAPACK
+//typedef struct { float r, i; } complex;
 
 
 /* Macro definitions */

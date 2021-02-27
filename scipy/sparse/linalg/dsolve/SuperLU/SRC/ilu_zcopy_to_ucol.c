@@ -26,7 +26,6 @@ at the top-level directory.
 int num_drop_U;
 #endif
 
-extern void zcopy_(int *, doublecomplex [], int *, doublecomplex [], int *);
 
 #if 0
 static doublecomplex *A;  /* used in _compare_ only */

@@ -3,6 +3,14 @@
 
 #include <stdlib.h>
 
+#include"f2c.h"
+#define integer int
+#define logical int
+#include"clapack.h"
+#undef integer
+#undef logical
+
+
 /*
  * Support routines
  */

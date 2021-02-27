@@ -21,6 +21,8 @@ at the top-level directory.
  */
 #include "slu_sdefs.h"
 
+extern float slangs(char *, SuperMatrix *);
+
 /*! \brief
  *
  * <pre>
@@ -378,8 +380,6 @@ sgssvx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     double    t0;      /* temporary time */
     double    *utime;
 
-    /* External functions */
-    extern float slangs(char *, SuperMatrix *);
 
     Bstore = B->Store;
     Xstore = X->Store;
@@ -575,7 +575,8 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
         } else {
 	    *(unsigned char *)norm = 'I';
         }
-        anorm = slangs(norm, AA);
+        anorm = slangs(norm, AA);    /* External functions */
+        extern float slangs(char *, SuperMatrix *);
         sgscon(norm, L, U, anorm, rcond, stat, &info1);
         utime[RCOND] = SuperLU_timer_() - t0;
     }

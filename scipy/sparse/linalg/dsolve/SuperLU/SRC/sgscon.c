@@ -92,9 +92,6 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     float *work;
     int    *iwork;
     int    isave[3];
-    extern int srscl_(int *, float *, float *, int *);
-
-    extern int slacon2_(int *, float *, float *, int *, float *, int *, int []);
 
     
     /* Test the input parameters. */

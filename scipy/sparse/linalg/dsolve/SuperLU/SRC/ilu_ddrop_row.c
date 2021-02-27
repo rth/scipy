@@ -23,13 +23,6 @@ at the top-level directory.
 #include <stdlib.h>
 #include "slu_ddefs.h"
 
-extern void dswap_(int *, double [], int *, double [], int *);
-extern void daxpy_(int *, double *, double [], int *, double [], int *);
-extern void dcopy_(int *, double [], int *, double [], int *);
-extern double dasum_(int *, double *, int *);
-extern double dnrm2_(int *, double *, int *);
-extern double dnrm2_(int *, double [], int *);
-extern int idamax_(int *, double [], int *);
 
 static double *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)

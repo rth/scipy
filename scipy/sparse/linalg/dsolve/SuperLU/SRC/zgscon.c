@@ -91,9 +91,6 @@ zgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     double ainvnm;
     doublecomplex *work;
     int    isave[3];
-    extern int zrscl_(int *, doublecomplex *, doublecomplex *, int *);
-
-    extern int zlacon2_(int *, doublecomplex *, doublecomplex *, double *, int *, int []);
 
     
     /* Test the input parameters. */

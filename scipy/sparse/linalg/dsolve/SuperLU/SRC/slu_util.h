@@ -398,7 +398,6 @@ extern int     spcoletree (int *, int *, int *, int, int, int *);
 extern int     *TreePostorder (int, int *);
 extern double  SuperLU_timer_ ();
 extern int     sp_ienv (int);
-extern int     xerbla_ (char *, int *);
 extern void    ifill (int *, int, int);
 extern void    snode_profile (int, int *);
 extern void    super_stats (int, int *);

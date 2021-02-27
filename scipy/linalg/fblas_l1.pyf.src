@@ -279,14 +279,16 @@ end subroutine <prefix>axpy
 function sdot(n,x,offx,incx,y,offy,incy) result (xy)
   ! Computes a vector-vector dot product.
 
-  fortranname sdot
+  callstatement sdot_return_value=(*f2py_func)(&n,x+offx,&incx,y+offy,&incy)
+  callprotoargument int*,float*,int*,float*,int*
 
-  callstatement (*f2py_func)(&sdot,&n,x+offx,&incx,y+offy,&incy)
-  callprotoargument float*,F_INT*,float*,F_INT*,float*,F_INT*
+  fortranname F_FUNC(sdot,SDOT)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) sdot
 
   real dimension(*), intent(in) :: x
   real dimension(*), intent(in) :: y
-  real sdot,xy
+  double precision sdot,xy
   integer optional, intent(in),check(incx>0||incx<0) :: incx = 1
   integer optional, intent(in),check(incy>0||incy<0) :: incy = 1
   integer optional, intent(in),depend(x) :: offx=0
@@ -304,8 +306,12 @@ end function sdot
 function ddot(n,x,offx,incx,y,offy,incy) result (xy)
   ! Computes a vector-vector dot product.
 
-  callstatement (*f2py_func)(&ddot,&n,x+offx,&incx,y+offy,&incy)
-  callprotoargument double*,F_INT*,double*,F_INT*,double*,F_INT*
+  callstatement ddot_return_value=(*f2py_func)(&n,x+offx,&incx,y+offy,&incy)
+  callprotoargument int*,double*,int*,double*,int*
+
+  fortranname F_FUNC(ddot,ddot)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) ddot
 
   double precision dimension(*), intent(in) :: x
   double precision dimension(*), intent(in) :: y
@@ -324,16 +330,22 @@ function ddot(n,x,offx,incx,y,offy,incy) result (xy)
 end function ddot
 
 
++// in CLAPACK, cdotu and zdotu are void and return by pointer (as can't return complex* without allocation)
 function <prefix2c>dotu(n,x,offx,incx,y,offy,incy) result(xy)
 
   <ftype2c> :: <prefix2c>dotu, xy
   fortranname w<prefix2c>dotu
 
-  callstatement (*f2py_func)(&<prefix2c>dotu,&n,x+offx,&incx,y+offy,&incy)
+  callstatement (*f2py_func)(&<prefix2c>dotu_return_value,&n,x+offx,&incx,y+offy,&incy)
   callprotoargument <ctype2c>*,F_INT*,<ctype2c>*,F_INT*,<ctype2c>*,F_INT*
 
   <ftype2c> dimension(*),intent(in) :: x
   <ftype2c> dimension(*),intent(in) :: y
+
++  fortranname F_FUNC(<prefix2c>dotu,<C,Z>DOTU)
++  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
++  intent(c) <prefix2c>dotu
++
 
   integer optional, intent(in),check(incx>0||incx<0) :: incx = 1
   integer optional, intent(in),check(incy>0||incy<0) :: incy = 1
@@ -354,10 +366,12 @@ end function <prefix2c>dotu
 function <prefix2c>dotc(n,x,offx,incx,y,offy,incy) result(xy)
 
   <ftype2c> :: <prefix2c>dotc, xy
-  fortranname w<prefix2c>dotc
+  callstatement <prefix2c>dotc_return_value=(*f2py_func)(&n,x+offx,&incx,y+offy,&incy)
+  callprotoargument int*,<ctype2c>*,int*,<ctype2c>*,int*
 
-  callstatement (*f2py_func)(&<prefix2c>dotc,&n,x+offx,&incx,y+offy,&incy)
-  callprotoargument <ctype2c>*,F_INT*,<ctype2c>*,F_INT*,<ctype2c>*,F_INT*
+  fortranname F_FUNC(<prefix2c>dotc,<C,Z>DOTC)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) <prefix2c>dotc
 
   <ftype2c> dimension(*),intent(in) :: x
   <ftype2c> dimension(*),intent(in) :: y
@@ -379,10 +393,15 @@ end function <prefix2c>dotc
 
 function <prefix3>nrm2(n,x,offx,incx) result(n2)
 
-  <ftypereal3> <prefix3>nrm2, n2
+  <ftypereal3> nm2
+  double precision <prefix3>nrm2
 
-  callstatement (*f2py_func)(&<prefix3>nrm2, &n,x+offx,&incx)
-  callprotoargument <ctypereal3>*,F_INT*,<ctype3>*,F_INT*
+  callstatement <prefix3>nrm2_return_value=(*f2py_func)( &n,x+offx,&incx)
+  callprotoargument int*,<ctype3>*,int*
+
+  fortranname F_FUNC(<prefix3>nrm2,<S,SC>NRM2)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) <prefix3>nrm2
 
   <ftype3> dimension(*),intent(in) :: x
 
@@ -399,10 +418,14 @@ end function <prefix3>nrm2
 
 function <prefix4>nrm2(n,x,offx,incx) result(n2)
 
-  <ftypereal4> <prefix4>nrm2, n2
+  callstatement <prefix4>nrm2_return_value=(*f2py_func)(&n,x+offx,&incx)
+  callprotoargument int*,<ctype4>*,int*
 
-  callstatement (*f2py_func)(&<prefix4>nrm2, &n,x+offx,&incx)
-  callprotoargument <ctypereal4>*,F_INT*,<ctype4>*,F_INT*
+  double precision <prefix4>nrm2
+  <ftype4> n2
+  fortranname F_FUNC(<prefix4>nrm2,<S,D>NRM2)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) <prefix4>nrm2
 
   <ftype4> dimension(*),intent(in) :: x
 
@@ -417,14 +440,20 @@ function <prefix4>nrm2(n,x,offx,incx) result(n2)
 end function <prefix4>nrm2
 
 
-function <prefix3>asum(n,x,offx,incx) result (s)
+function <prefix3>asum(n,x,offx,incx) result (d)
   ! Computes the sum of magnitudes of the vector elements
 
-  callstatement (*f2py_func)(&<prefix3>asum,&n,x+offx,&incx)
-  callprotoargument <ctypereal3>*,F_INT*,<ctype3>*,F_INT*
+  callstatement <prefix3>asum_return_value=(*f2py_func)(&n,x+offx,&incx)
+  callprotoargument int*,<ctype3>*,int*
+ 
+  double precision <prefix3>asum
+  fortranname F_FUNC(<prefix3>asum,<S,SC>ASUM)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) <prefix3>asum
 
   <ftype3> dimension(*), intent(in) :: x
-  <ftypereal3> <prefix3>asum,s
+  <ftypereal3> s
+  double precision <prefix3>asum
   integer optional, intent(in), check(incx>0||incx<0) :: incx = 1
   integer optional, intent(in), depend(x) :: offx=0
   check(offx>=0 && offx<len(x)) :: offx
@@ -434,11 +463,16 @@ function <prefix3>asum(n,x,offx,incx) result (s)
 end function <prefix3>asum
 
 
-function <prefix4>asum(n,x,offx,incx) result (s)
+function <prefix4>asum(n,x,offx,incx) result (d)
   ! Computes the sum of magnitudes of the vector elements
 
-  callstatement (*f2py_func)(&<prefix4>asum,&n,x+offx,&incx)
-  callprotoargument <ctypereal4>*,F_INT*,<ctype4>*,F_INT*
+  callstatement <prefix4>asum_return_value=(*f2py_func)(&n,x+offx,&incx) 
+  callprotoargument int*,<ctype4>*,int*
+
+  <ftype4> <prefix4>asum
+  fortranname F_FUNC(<prefix4>asum,<D,Z>ASUM)
+  ! This following line is to avoid Fortran wrappers - fix for CLAPACK
+  intent(c) <prefix4>asum
 
   <ftype4> dimension(*), intent(in) :: x
   <ftypereal4> <prefix4>asum,s

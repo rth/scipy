@@ -1497,3 +1497,4 @@ void zunmrz(char *side, char *trans, int *m, int *n, int *k, int *l, z *a, int *
 void zunmtr(char *side, char *uplo, char *trans, int *m, int *n, z *a, int *lda, z *tau, z *c, int *ldc, z *work, int *lwork, int *info)
 void zupgtr(char *uplo, int *n, z *ap, z *tau, z *q, int *ldq, z *work, int *info)
 void zupmtr(char *side, char *uplo, char *trans, int *m, int *n, z *ap, z *tau, z *c, int *ldc, z *work, int *info)
+void ilaenv(int *ispec, char *name, char *opts, int *n1, int *n2, int *n3, int *n4)

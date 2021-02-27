@@ -91,9 +91,6 @@ cgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     float ainvnm;
     complex *work;
     int    isave[3];
-    extern int crscl_(int *, complex *, complex *, int *);
-
-    extern int clacon2_(int *, complex *, complex *, float *, int *, int []);
 
     
     /* Test the input parameters. */

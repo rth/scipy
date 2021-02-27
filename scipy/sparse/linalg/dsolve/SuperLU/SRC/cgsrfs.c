@@ -170,14 +170,6 @@ cgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
     int      *iwork;
     int      isave[3];
 
-    extern int clacon2_(int *, complex *, complex *, float *, int *, int []);
-#ifdef _CRAY
-    extern int CCOPY(int *, complex *, int *, complex *, int *);
-    extern int CSAXPY(int *, complex *, complex *, int *, complex *, int *);
-#else
-    extern int ccopy_(int *, complex *, int *, complex *, int *);
-    extern int caxpy_(int *, complex *, complex *, int *, complex *, int *);
-#endif
 
     Astore = A->Store;
     Aval   = Astore->nzval;
