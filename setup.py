@@ -484,7 +484,7 @@ def configuration(parent_package='', top_path=None):
 
     lapack_opt = get_info('lapack_opt')
 
-    if not lapack_opt:
+    if not lapack_opt and False:
         if sys.platform == "darwin":
             msg = ('No BLAS/LAPACK libraries found. '
                    'Note: Accelerate is no longer supported.')
