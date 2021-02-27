@@ -3,7 +3,7 @@
 __all__ = ['odeint']
 
 import numpy as np
-from . import _odepack
+_odepack = None
 from copy import copy
 import warnings
 

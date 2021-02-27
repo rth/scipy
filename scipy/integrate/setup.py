@@ -37,8 +37,6 @@ def configuration(parent_package='',top_path=None):
     config.add_library('mach', sources=mach_src, config_fc={'noopt': (__file__, 1)},
                        _pre_build_hook=pre_build_hook)
     config.add_library('quadpack', sources=quadpack_src, _pre_build_hook=pre_build_hook)
-    config.add_library('lsoda', sources=lsoda_src, _pre_build_hook=pre_build_hook)
-    config.add_library('vode', sources=vode_src, _pre_build_hook=pre_build_hook)
     config.add_library('dop', sources=dop_src, _pre_build_hook=pre_build_hook)
 
     # Extensions
@@ -56,30 +54,14 @@ def configuration(parent_package='',top_path=None):
     # odepack/lsoda-odeint
     cfg = combine_dict(lapack_opt, numpy_nodepr_api,
                        libraries=['lsoda', 'mach'])
-    config.add_extension('_odepack',
-                         sources=['_odepackmodule.c'],
-                         depends=(lsoda_src + mach_src),
-                         **cfg)
 
     # vode
     cfg = combine_dict(lapack_opt,
                        libraries=['vode'])
-    ext = config.add_extension('vode',
-                               sources=['vode.pyf'],
-                               depends=vode_src,
-                               f2py_options=f2py_options,
-                               **cfg)
-    ext._pre_build_hook = pre_build_hook
 
     # lsoda
     cfg = combine_dict(lapack_opt,
                        libraries=['lsoda', 'mach'])
-    ext = config.add_extension('lsoda',
-                               sources=['lsoda.pyf'],
-                               depends=(lsoda_src + mach_src),
-                               f2py_options=f2py_options,
-                               **cfg)
-    ext._pre_build_hook = pre_build_hook
 
     # dop
     ext = config.add_extension('_dop',
@@ -95,12 +77,6 @@ def configuration(parent_package='',top_path=None):
     # Fortran+f2py extension module for testing odeint.
     cfg = combine_dict(lapack_opt,
                        libraries=['lsoda', 'mach'])
-    ext = config.add_extension('_test_odeint_banded',
-                               sources=odeint_banded_test_src,
-                               depends=(lsoda_src + mach_src),
-                               f2py_options=f2py_options,
-                               **cfg)
-    ext._pre_build_hook = pre_build_hook
 
     config.add_subpackage('_ivp')
 

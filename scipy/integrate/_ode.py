@@ -87,9 +87,9 @@ import warnings
 
 from numpy import asarray, array, zeros, isscalar, real, imag, vstack
 
-from . import vode as _vode
-from . import _dop
-from . import lsoda as _lsoda
+_vode = None
+_dop = None
+_lsoda = None
 
 
 _dop_int_dtype = _dop.types.intvar.dtype
